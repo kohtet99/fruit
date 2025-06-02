@@ -138,6 +138,41 @@ class AuthProvider with ChangeNotifier {
     }
   }
 
+  Future<void> sendPasswordResetEmail(String email) async {
+    try {
+      _isLoading = true;
+      notifyListeners();
+      
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+      
+      _isLoading = false;
+      _errorMessage = null;
+      notifyListeners();
+    } on FirebaseAuthException catch (e) {
+      _isLoading = false;
+      _errorMessage = _getErrorMessage(e.code);
+      notifyListeners();
+    } catch (e) {
+      _isLoading = false;
+      _errorMessage = "An unknown error occurred";
+      notifyListeners();
+    }
+  }
+
+  String _getErrorMessage(String code) {
+    switch (code) {
+      case 'user-not-found':
+        return "No account found with this email";
+      case 'invalid-email':
+        return "Please enter a valid email address";
+      case 'user-disabled':
+        return "This account has been disabled";
+      default:
+        return "Password reset failed. Please try again";
+    }
+  }
+
+
   String _getAuthErrorMessage(FirebaseAuthException e) {
     switch (e.code) {
       case 'invalid-email':

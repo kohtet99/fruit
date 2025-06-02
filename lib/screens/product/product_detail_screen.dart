@@ -26,7 +26,7 @@ class ProductDetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           product.name,
-          style: const TextStyle(color: Colors.white, fontSize: 18),
+          style: const TextStyle(color: Colors.white, fontSize: 16),
         ),
         centerTitle: true,
         backgroundColor: const Color(0xFF58211B),

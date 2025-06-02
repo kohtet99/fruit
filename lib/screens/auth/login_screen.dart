@@ -1,5 +1,6 @@
 
 import 'package:assignment1/providers/auth_provider.dart';
+import 'package:assignment1/screens/auth/forgetpassword_screen.dart';
 import 'package:assignment1/screens/auth/signup_screen.dart';
 import 'package:assignment1/screens/auth/verification_screen.dart';
 import 'package:flutter/material.dart';
@@ -107,6 +108,24 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (value.length < 6) return 'Min 6 characters';
                                 return null;
                               },
+                            ),
+                            Align(
+                              alignment: Alignment.centerRight,
+                              child: TextButton(
+                                onPressed: authProvider.isLoading
+                                    ? null
+                                    : () => Navigator.push(
+                                          context,
+                                          MaterialPageRoute(builder: (_) => const ForgotPasswordScreen()),
+                                        ),
+                                child: const Text(
+                                  'Forgot Password?',
+                                  style: TextStyle(
+                                    color: Color(0xFF58211B),
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ),
                             ),
                             const SizedBox(height: 24),
                             SizedBox(

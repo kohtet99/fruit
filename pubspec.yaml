@@ -49,6 +49,8 @@ dependencies:
   intl: ^0.20.2
   cloud_firestore: ^4.17.5
   http: ^1.4.0
+  url_launcher: ^6.3.1
+  
   
 
 dev_dependencies:
@@ -86,7 +88,8 @@ flutter:
     - assets/logo/kpay.png
     - assets/logo/ayapay.png    
     - assets/logo/email_verification.png
-    
+    - assets/logo/avatar.jpg
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

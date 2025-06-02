@@ -16,7 +16,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool _obscurePassword = true;
-  bool _verificationSent = false; // Added to track verification status
+  final bool _verificationSent = false; // Added to track verification status
 
   @override
   void dispose() {
