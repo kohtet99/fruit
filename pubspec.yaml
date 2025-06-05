@@ -85,6 +85,17 @@ flutter:
     - assets/fruits/orange.jpg
     - assets/fruits/Mango.jpg
     - assets/fruits/strawbarry.jpg
+    - assets/meats/Beef.png
+    - assets/meats/Chickenpoultry.png
+    - assets/meats/Fishfillet.png
+    - assets/meats/pork.png
+    - assets/vegetable/Kale.png
+    - assets/vegetable/Cauliflower.png
+    - assets/vegetable/garlic.png
+    - assets/vegetable/Lettuce.png
+    - assets/vegetable/Onion.png
+    - assets/vegetable/Potato.png
+    - assets/vegetable/Tomato.png
     - assets/logo/kpay.png
     - assets/logo/ayapay.png    
     - assets/logo/email_verification.png

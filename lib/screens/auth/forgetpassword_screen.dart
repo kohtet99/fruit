@@ -59,7 +59,10 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(24),
-        child: _resetSent ? _buildSuccessState() : _buildResetForm(authProvider, isLoggedIn),
+        child:
+            _resetSent
+                ? _buildSuccessState()
+                : _buildResetForm(authProvider, isLoggedIn),
       ),
     );
   }
@@ -105,7 +108,9 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               if (value == null || value.isEmpty) {
                 return 'Please enter your email';
               }
-              if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(value)) {
+              if (!RegExp(
+                r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+              ).hasMatch(value)) {
                 return 'Please enter a valid email';
               }
               return null;
@@ -129,19 +134,20 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               ),
               backgroundColor: const Color(0xFF58211B),
             ),
-            child: authProvider.isLoading
-                ? const SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                      strokeWidth: 2,
+            child:
+                authProvider.isLoading
+                    ? const SizedBox(
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        color: Colors.white,
+                        strokeWidth: 2,
+                      ),
+                    )
+                    : const Text(
+                      'Send',
+                      style: TextStyle(fontSize: 16, color: Colors.white),
                     ),
-                  )
-                : const Text(
-                    'Send',
-                    style: TextStyle(fontSize: 16, color: Colors.white),
-                  ),
           ),
           const SizedBox(height: 24),
           TextButton(
@@ -165,7 +171,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const SizedBox(height: 40),
-        const Icon(Icons.mark_email_read_outlined, size: 80, color: Color(0xFF58211B)),
+        const Icon(
+          Icons.mark_email_read_outlined,
+          size: 80,
+          color: Color(0xFF58211B),
+        ),
         const SizedBox(height: 32),
         const Text(
           'Check your email',
@@ -181,7 +191,11 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           child: Text(
             'We sent password reset instructions to\n${_emailController.text}',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, color: Colors.grey[700], height: 1.5),
+            style: TextStyle(
+              fontSize: 16,
+              color: Colors.grey[700],
+              height: 1.5,
+            ),
           ),
         ),
         const SizedBox(height: 40),

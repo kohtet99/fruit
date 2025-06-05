@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:iconsax_flutter/iconsax_flutter.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+   const LoginScreen({super.key});
 
   @override
   _LoginScreenState createState() => _LoginScreenState();

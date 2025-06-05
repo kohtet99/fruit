@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:assignment1/models/product.dart';
 import 'package:flutter/material.dart';
 

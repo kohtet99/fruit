@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -68,15 +67,14 @@ class AuthProvider with ChangeNotifier {
   }
 
   void checkVerificationStatus() async {
-  if (_user != null && !_user!.emailVerified) {
-    await reloadUser();
-    if (!_user!.emailVerified) {
-      _errorMessage = 'Please verify your email to continue';
-      notifyListeners();
+    if (_user != null && !_user!.emailVerified) {
+      await reloadUser();
+      if (!_user!.emailVerified) {
+        _errorMessage = 'Please verify your email to continue';
+        notifyListeners();
+      }
     }
   }
-}
-
 
   Future<void> resendVerificationEmail() async {
     try {
@@ -90,6 +88,7 @@ class AuthProvider with ChangeNotifier {
       notifyListeners();
     }
   }
+
   Future<void> signIn(String email, String password) async {
     try {
       _isLoading = true;
@@ -105,7 +104,7 @@ class AuthProvider with ChangeNotifier {
       if (_user != null && !_user!.emailVerified) {
         throw FirebaseAuthException(
           code: 'email-not-verified',
-          message: 'Please verify your email address'
+          message: 'Please verify your email address',
         );
       }
     } on FirebaseAuthException catch (e) {
@@ -128,7 +127,7 @@ class AuthProvider with ChangeNotifier {
 
       await _auth.signOut();
       await Hive.box('wishlist').clear();
-       _user = null;
+      _user = null;
     } catch (e) {
       _errorMessage = "SignOut Failed: ${e.toString()}";
       throw Exception(_errorMessage);
@@ -142,9 +141,9 @@ class AuthProvider with ChangeNotifier {
     try {
       _isLoading = true;
       notifyListeners();
-      
+
       await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
-      
+
       _isLoading = false;
       _errorMessage = null;
       notifyListeners();
@@ -171,7 +170,6 @@ class AuthProvider with ChangeNotifier {
         return "Password reset failed. Please try again";
     }
   }
-
 
   String _getAuthErrorMessage(FirebaseAuthException e) {
     switch (e.code) {

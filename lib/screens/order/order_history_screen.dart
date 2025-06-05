@@ -1,4 +1,5 @@
 import 'package:assignment1/providers/order_provider.dart';
+import 'package:assignment1/screens/order/order_detail_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
@@ -168,7 +169,12 @@ class OrderCard extends StatelessWidget {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => OrderDetailScreen(order: order)),
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Column(

@@ -28,6 +28,8 @@ class Product {
   final String imagePath;
   @HiveField(4)
   int quantity;
+  @HiveField(5)
+  String category;
 
   Product({
     required this.id,
@@ -35,6 +37,7 @@ class Product {
     required this.price,
     required this.imagePath,
     this.quantity = 1,
+    required this.category,
   });
 
   Product copyWith({int? quantity}) {
@@ -44,6 +47,7 @@ class Product {
       price: price,
       imagePath: imagePath,
       quantity: quantity ?? this.quantity,
+      category: category,
     );
   }
 }

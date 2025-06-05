@@ -3,6 +3,7 @@ import 'package:assignment1/models/product.dart';
 import 'package:assignment1/providers/auth_provider.dart';
 import 'package:assignment1/providers/cart_provider.dart';
 import 'package:assignment1/providers/order_provider.dart';
+import 'package:assignment1/providers/productfilter_provider.dart';
 import 'package:assignment1/providers/review_provider.dart';
 import 'package:assignment1/providers/wishlist_provider.dart';
 import 'package:assignment1/screens/auth/login_screen.dart';
@@ -21,6 +22,9 @@ void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
   Hive.registerAdapter(OrderAdapter());
+  // await Hive.deleteBoxFromDisk('products'); //reload deletebox
+  // await Hive.deleteBoxFromDisk('orders');
+  // await Hive.deleteBoxFromDisk('wishlist');
   await Hive.openBox<Product>('products');
   await Hive.openBox<Order>('orders');
   await Hive.openBox('wishlist');
@@ -44,6 +48,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => WishlistProvider()),
         ChangeNotifierProvider(create: (_) => AuthProvider()),
         ChangeNotifierProvider(create: (_) => OrdersProvider()),
+        ChangeNotifierProvider(create: (_) => ProductFilterProvider()),
       ],
       child: MyApp(),
     ),
@@ -60,6 +65,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => AuthWrapper(),
         '/login': (context) => LoginScreen(),
+        '/products': (context) => const ProductListScreen(),
       },
     );
   }
@@ -67,17 +73,15 @@ class MyApp extends StatelessWidget {
 
 class AuthWrapper extends StatelessWidget {
   const AuthWrapper({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     final authProvider = Provider.of<AuthProvider>(context);
-    
+
     if (authProvider.user != null) {
-      // Check if email is verified
       if (authProvider.user!.emailVerified) {
         return ProductListScreen();
       } else {
-        // User exists but email not verified
         return VerificationScreen(email: authProvider.user!.email!);
       }
     } else {
